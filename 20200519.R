@@ -1,4 +1,8 @@
 #いつものデータを入れる
+library(readxl)
+install.packages("gplots") #インストールしたらこの行は消してOK
+library(gplots)
+
 data<-read_excel("trialdata.xls")
 #以下の分析では"data2020"でお願いね!
 attach(data)
@@ -112,8 +116,7 @@ TukeyHSD(aov(abe~pid_n))
 pairwise.t.test(abe, pid_n, p.adj = "bonf")
 
 #絵を書いてみる
-#install.packages("gplots") #インストールしてない人はここから
-library(gplots)
+
 plotmeans(abe ~ pid_n)
 
 
