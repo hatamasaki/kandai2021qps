@@ -1,20 +1,12 @@
-#以下11行目までは呪文
-# ZIPファイルをダウンロードして解凍
-download_and_extract <- function(url) {
-  tmp <- tempfile()
-  download.file(url, tmp)
-  files <- unzip(tmp)
-  unlink(tmp)
-  return(files)
-}
+#いつものデータを入れる
 library(readxl)
-theme_set(theme_bw(base_size = 10,base_family = "HiraginoSans-W3"))
-#↓から授業内容
+library(gplots)
 
 #いつものデータを入れる
 data2020<-read_excel("trialdata.xls")
 #以下の分析では"data2020"でお願いね!
 attach(data2020)
+
 
 #まずは変数処理をしましょう
 #教育程度（説明変数側）
@@ -111,9 +103,9 @@ round(prop.table(table(generation, pid_n),1)*100,1)
 #########################################################################
 #########################################################################
 #########################################################################
-#ここから11/09日分
+#ここから6/9分
 
-#性別ごとのむとうはりつの比較
+#性別ごとの無党派率の比較
 
 #性別
 gender <- sex
@@ -166,7 +158,7 @@ curve(dchisq(x, df), 0, 8, add=TRUE)
 
 
 ############################################################
-#11/30ここから
+##ここから6/16分
 ############################################################
 
 #カイ二乗検定
@@ -349,5 +341,3 @@ p3 <- p3 + geom_smooth(method = 'lm')
 p3 <- p3 + labs(x = 'ideology', y = 'feeling:LDP')
 print(p3 + ggtitle('Political Ideology Effect on Feelings to LDP'))
 ggsave("ideology.png")
-
-################################################################################
